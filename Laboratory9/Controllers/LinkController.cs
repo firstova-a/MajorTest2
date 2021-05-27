@@ -23,7 +23,7 @@ namespace Laboratory9.Controllers
             if (sender != null && Crypto.VerifyHashedPassword(sender.PasswordHash, password))
             {
                 IQueryable<News> allNews = from news in context.News
-                                                 orderby news.ID
+                                                 orderby news.ID descending
                                                  select news;
                 return allNews.ToList().ConvertAll(msg => NewsModel.FromEntity(msg));
             }

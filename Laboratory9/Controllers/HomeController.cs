@@ -164,14 +164,14 @@ namespace Laboratory9.Controllers
         [Authorize]
         public async Task<IActionResult> AllLinks()
         {
-            return View(context.News.ToList());
+            return View(context.News.ToList().Reverse<News>());
         }
 
 
        [Authorize]
         public async Task<IActionResult> UserPage()
         {
-            return View(context.News.ToList());
+            return View(context.News.ToList().Reverse<News>());
         }
 
 
