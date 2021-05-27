@@ -1,0 +1,57 @@
+﻿@using Laboratory9.Entities
+@model IEnumerable<News>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Мои ссылки</title>
+    <style>
+             table {
+                
+        
+         margin: inherit; / Выравниваем таблицу по центру окна  /
+        }
+        td {
+         text-align: center; / Выравниваем текст по центру ячейки */
+             }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать, @User.Identity.Name! Это список ваших новостей.</h1>
+    @Html.Raw(ViewBag.error)
+    <a href="/Home/AllLinks">Все новости</a>
+    <a href="/Home/Logout">Выйти</a>
+    <h3>Добавить новую новость</h3>
+    <form method="post">
+        <b>Заголовок</b>
+        <input height="150" type="text" name="title" />
+        <b>Текст новости</b>
+        <textarea  cols="40" rows="5" type="text" name="text"> </textarea>
+        <!--<input size="50" height="350" type="text" name="text" style="height: 100px;" />-->
+        <input type="submit" name="button" value="Добавить" />
+    </form>
+    <div style="width:300%; height:400px; overflow-y:scroll;">
+       
+ 
+           
+             @foreach (News news in Model)
+                 {
+                  if (news.Author.Username == User.Identity.Name)
+             {
+               <tr>
+                    
+
+                                           <td><b><u>@news.Title</u></b></td><br />
+                        <td><font size="2">@news.Time</font></td><br />
+                        <td><b>@news.Text</b></td><br />
+                        <td><a href="/Home/DeleteNews?IdNews=@news.ID&Sender=@User.Identity.Name">Удалить</a></td><br /><br />
+                    </tr>
+               //<td><a href="/Home/DeleteAddress?IdLink=@msg.Id&Sender=@User.Identity.Name">Удалить</a></td>
+
+
+                                    }
+                                }
+
+                                        </div>
+</body>
+</html>

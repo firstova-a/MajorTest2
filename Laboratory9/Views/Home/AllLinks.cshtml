@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Laboratory9.Entities
+@model IEnumerable<News>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Все новости</title>
+    <style>
+        table {
+            width: 900px;
+            text-align-all: center;
+            margin: inherit;
+        }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать, @User.Identity.Name! Это список всех новостей.</h1>
+    @Html.Raw(ViewBag.error)
+    <a href="/Home/UserPage">На свою страницу</a>
+    
+    
+    <div style=" height:300px; overflow-y:scroll;">
+
+            </tr>
+            @foreach (News msg in Model)
+            {
+
+        <tr>
+            <td><font color="blue">@msg.Author.Username</font></td><br />
+            <td><b><u>@msg.Title</u></b></td>
+            <br />
+            <td><font size="2">@msg.Time</font></td><br />
+            <td><b>@msg.Text</b></td><br /><br />
+
+        </tr>
+            }
+       
+    </div>
+</body>
+</html>
